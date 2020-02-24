@@ -73,6 +73,7 @@ namespace TestListProject
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
         public void AddObjectsToListTest_FirstItemHasCorrectName()
         {
             CustomList<string> myList = new CustomList<string>();
@@ -82,6 +83,22 @@ namespace TestListProject
 
             myList.AddToList(name);
             actual = myList[0];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void RemoveObjectsFromListTest_CountReduced()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int valueToAdd = 10;
+            int valueToRemove = 10;
+            int expected = 0;
+            int actual;
+
+            myList.AddToList(valueToAdd);
+            myList.AddToList(valueToRemove);
+            actual = myList.Count;
 
             Assert.AreEqual(expected, actual);
         }
