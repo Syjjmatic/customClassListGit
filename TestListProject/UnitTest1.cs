@@ -8,117 +8,118 @@ namespace TestListProject
     public class UnitTest1
     {
         [TestMethod]
-        public void AddObjectsToListTest_CountIncreased()
+        public void AddObjectsToList_Test_CountIncreased()
         {
             CustomList<int> myList = new CustomList<int>();
             int valueToAdd = 10;
             int expected = 1;
             int actual;
 
-            myList.AddToList(valueToAdd);
-            actual = myList.customList.Count;
+            myList.Add(valueToAdd);
+            actual = myList.Count();
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void AddObjectsToListTest_TheFirstItemIndexIsZero()
+        public void AddObjectsToList_Test_TheFirstItemIndexIsZero()
         {
             CustomList<int> myList = new CustomList<int>();
-            int valueToAdd = 10;
+            int value = 10;
             int expected = 10;
             int actual;
 
-            myList.AddToList(valueToAdd);
-            actual = myList.customList[0];
+            myList.Add(value);
+            actual = myList[0];
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void AddObjectsToListTest_TheSecondItemIndexIsOne()
+        public void AddObjectsToList_Test_TheSecondItemIndexIsOne()
         {
             CustomList<int> myList = new CustomList<int>();
-            int valueToAdd = 10;
-            int valueToAdd1 = 15;
-            int expected = 15;
+            int value1 = 10;
+            int value2 = 15;
+            int expected = value2;
             int actual;
 
-            myList.AddToList(valueToAdd);
-            myList.AddToList(valueToAdd1);
-            actual = myList.customList[1];
+            myList.Add(value1);
+            myList.Add(value2);
+            actual = myList[1];
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void AddObjectsToListTest_CorrectArrayCapacity()
+        public void AddObjectsToList_Test_CorrectArrayCapacity()
         {
             CustomList<int> myList = new CustomList<int>();
-            int valueToAdd = 10;
-            int valueToAdd1 = 15;
-            int valueToAdd2 = 20;
-            int valueToAdd3 = 25;
-            int valueToAdd4 = 30;
+            int value = 10;
+            int value1 = 15;
+            int value2 = 20;
+            int value3 = 25;
+            int value4 = 30;
             int expected = 8;
             int actual;
 
-            myList.AddToList(valueToAdd);
-            myList.AddToList(valueToAdd1);
-            myList.AddToList(valueToAdd2);
-            myList.AddToList(valueToAdd3);
-            myList.AddToList(valueToAdd4);
-            actual = myList.customList.Capacity;
+            myList.Add(value);
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+            actual = myList.Capacity();
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void AddObjectsToListTest_FirstItemHasCorrectName()
+        public void AddObjectsToList_Test_FirstItemHasCorrectName()
         {
             CustomList<string> myList = new CustomList<string>();
             string name = "Andrew";
             string expected = name;
             string actual;
 
-            myList.AddToList(name);
-            actual = myList.customList[0];
+            myList.Add(name);
+            actual = myList[0];
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void RemoveObjectsFromListTest_CountReduced()
+        public void RemoveObjectsFromList_Test_CountReduced()
         {
             CustomList<int> myList = new CustomList<int>();
-            int intValue = 10;
+            int value = 10;
             int expected = 0;
             int actual;
 
-            myList.AddToList(intValue);
-            myList.AddToList(intValue);
-            actual = myList.customList.Count;
+            myList.Add(value);
+            myList.Add(value);
+            actual = myList.Count();
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void RemoveObjectsFromListTest_ItemsInIndexZero()
+        public void RemoveObjectsFromList_Test_ItemsInIndexZero()
         {
             CustomList<int> myList = new CustomList<int>();
-            int intValue = 10;
-            int expected = 0;
-            int actual;
+            int value = 10;
+            IndexOutOfRangeException expected = new IndexOutOfRangeException();
+            IndexOutOfRangeException actual;
 
-            myList.AddToList(intValue);
-            myList.RemoveFromList(intValue);
-            actual = myList.customList[0];
+            myList.Add(value);
+            myList.RemoveFromList(value);
+            actual = myList[0];
+            //Argument out of range exception
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void RemoveObjectsFromListTest_NameOfItemInIndex1()
+        public void RemoveObjectsFromList_Test_NameOfItemInIndex1()
         {
             CustomList<string> myList = new CustomList<string>();
             string string1 = "Andrew";
@@ -126,10 +127,45 @@ namespace TestListProject
             string expected = string2;
             string actual;
 
-            myList.AddToList(string1);
-            myList.AddToList(string2);
+            myList.Add(string1);
+            myList.Add(string2);
             myList.RemoveFromList(string1);
-            actual = myList.customList[0];
+            actual = myList[0];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        ]public void RemoveObjectsFromList_Test_ItemNoLongerInIndex()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int value1 = 10;
+            int value2 = 15;
+            IndexOutOfRangeException expected = new IndexOutOfRangeException(); // need help
+            IndexOutOfRangeException actual;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.RemoveFromList(value1);
+            actual = myList[1];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void RemoveObjectsFromList_Test_ReduceCountByTwo()
+        {
+            CustomList<string> myList = new CustomList<string>();
+            string string1 = "string1";
+            string string2 = "string2";
+            int expected = 0;
+            int actual;
+
+            myList.Add(string1);
+            myList.Add(string2);
+            myList.RemoveFromList(string1);
+            myList.RemoveFromList(string2);
+            actual = myList.Count();
 
             Assert.AreEqual(expected, actual);
         }
