@@ -96,7 +96,7 @@ namespace TestListProject
             int actual;
 
             myList.Add(value);
-            myList.Add(value);
+            myList.Remove(value);
             actual = myList.Count;
 
             Assert.AreEqual(expected, actual);
@@ -109,7 +109,7 @@ namespace TestListProject
             CustomList<int> myList = new CustomList<int>();
             int value = 10;
             myList.Add(value);
-            myList.RemoveFromList(value);
+            myList.Remove(value);
             int actual = myList[0];
         }
 
@@ -124,7 +124,7 @@ namespace TestListProject
 
             myList.Add(string1);
             myList.Add(string2);
-            myList.RemoveFromList(string1);
+            myList.Remove(string1);
             actual = myList[0];
 
             Assert.AreEqual(expected, actual);
@@ -140,7 +140,7 @@ namespace TestListProject
             int actual;
             myList.Add(value1);
             myList.Add(value2);
-            myList.RemoveFromList(value1);
+            myList.Remove(value1);
             actual = myList[1];
         }
 
@@ -155,8 +155,8 @@ namespace TestListProject
 
             myList.Add(string1);
             myList.Add(string2);
-            myList.RemoveFromList(string1);
-            myList.RemoveFromList(string2);
+            myList.Remove(string1);
+            myList.Remove(string2);
             actual = myList.Count;
 
             Assert.AreEqual(expected, actual);
