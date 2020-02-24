@@ -16,7 +16,7 @@ namespace TestListProject
             int actual;
 
             myList.Add(valueToAdd);
-            actual = myList.Count();
+            actual = myList.Count;
 
             Assert.AreEqual(expected, actual);
         }
@@ -68,7 +68,7 @@ namespace TestListProject
             myList.Add(value2);
             myList.Add(value3);
             myList.Add(value4);
-            actual = myList.Capacity();
+            actual = myList.Capacity;
 
             Assert.AreEqual(expected, actual);
         }
@@ -97,29 +97,24 @@ namespace TestListProject
 
             myList.Add(value);
             myList.Add(value);
-            actual = myList.Count();
+            actual = myList.Count;
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void RemoveObjectsFromList_Test_ItemsInIndexZero()
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void RemoveObjectsFromList_Test_NoItemsInListThrowException()
         {
             CustomList<int> myList = new CustomList<int>();
             int value = 10;
-            IndexOutOfRangeException expected = new IndexOutOfRangeException();
-            IndexOutOfRangeException actual;
-
             myList.Add(value);
             myList.RemoveFromList(value);
-            actual = myList[0];
-            //Argument out of range exception
-
-            Assert.AreEqual(expected, actual);
+            int actual = myList[0];
         }
 
         [TestMethod]
-        public void RemoveObjectsFromList_Test_NameOfItemInIndex1()
+        public void RemoveObjectsFromList_Test_NameOfItemInIndexOne()
         {
             CustomList<string> myList = new CustomList<string>();
             string string1 = "Andrew";
@@ -136,20 +131,17 @@ namespace TestListProject
         }
 
         [TestMethod]
-        ]public void RemoveObjectsFromList_Test_ItemNoLongerInIndex()
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void RemoveObjectsFromList_Test_ItemNoLongerInLocationThrowException()
         {
             CustomList<int> myList = new CustomList<int>();
             int value1 = 10;
             int value2 = 15;
-            IndexOutOfRangeException expected = new IndexOutOfRangeException(); // need help
-            IndexOutOfRangeException actual;
-
+            int actual;
             myList.Add(value1);
             myList.Add(value2);
             myList.RemoveFromList(value1);
             actual = myList[1];
-
-            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -165,7 +157,7 @@ namespace TestListProject
             myList.Add(string2);
             myList.RemoveFromList(string1);
             myList.RemoveFromList(string2);
-            actual = myList.Count();
+            actual = myList.Count;
 
             Assert.AreEqual(expected, actual);
         }
