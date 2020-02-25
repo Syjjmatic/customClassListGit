@@ -108,9 +108,10 @@ namespace TestListProject
         {
             CustomList<int> myList = new CustomList<int>();
             int value = 10;
+            int actual;
             myList.Add(value);
             myList.Remove(value);
-            int actual = myList[0];
+            actual = myList[0];
         }
 
         [TestMethod]

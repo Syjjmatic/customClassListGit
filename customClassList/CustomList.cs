@@ -11,7 +11,6 @@ namespace customClassList
         T[] items;
         int count;
         int capacity;
-
         public int Count 
         {
             get
@@ -19,7 +18,6 @@ namespace customClassList
                 return count;
             }
         }
-
         public int Capacity
         {
             get
@@ -27,7 +25,6 @@ namespace customClassList
                 return capacity;
             }
         }
-
         public T this[int i]
         {
             get { return items[i]; }
@@ -41,70 +38,32 @@ namespace customClassList
             count = 0;
         }
 
-
-
-
         public void Add(T item)
         {
-            if (count < 4)
+            if (count >= 4 && count < 8)
             {
-                if (count == 0)
-                {
-                    count++;
-                    items[0] = item;
-                }
-                else if (count == 1)
-                {
-                    count++;
-                    items[1] = item;
-                }
-                else if (count == 2)
-                {
-                    count++;
-                    items[2] = item;
-                }
-                else if (count == 3)
-                {
-                    count++;
-                    items[3] = item;
-                }
+                capacity = 4 * 2;
+                CopyItems();
             }
-            else if (count >= 4 && count < 8)
+            else if (count >= 8 && count < 16)
             {
-                capacity *= 2;
-                T[] copy = new T[4];
-                copy = items;
-                items = new T[capacity];
-                for (int i = 0; i < copy.Length; i++)
-                {
-                    items[i] = copy[i];
-                }
-
-                if (count == 4)
-                {
-                    count++;
-                    items[4] = item;
-                }
-                else if (count == 5)
-                {
-                    count++;
-                    items[5] = item;
-                }
-                else if (count == 6)
-                {
-                    count++;
-                    items[6] = item;
-                }
-                else if(count == 7)
-                {
-                    count++;
-                    items[7] = item;
-                }
+                capacity = 4 * (2 ^ 2);
+                CopyItems();
+            }
+            else if (count >= 16 && count < 32)
+            {
+                capacity = 4 * (2 ^ 3);
+                CopyItems();
+            }
+            else if (count >= 32 && count < 64)
+            {
+                capacity = 4 * (2 ^ 4);
+                CopyItems();
             }
 
-      
-
-
+            items[count] = item;
+            count++;
+            
             // Each time an item is added, the list's count is increased by 1
             // The first item in the list is in index 1
             // The second item in the list is in index 2
@@ -115,12 +74,14 @@ namespace customClassList
         public void Remove(T item)
         {
             count--;
-            for (int i = 0; i < items.Length; i++)
-            {
-                //if (item == items[i]) // pick back up tomorrow 2/25
-                //{
+            // ToString
 
-                //}
+            for (int i = 0; i < count; i++)
+            {
+                if (item.Equals(items[i]))
+                {
+
+                }
 
             }
 
@@ -129,6 +90,17 @@ namespace customClassList
             // The item in index 1 should be the item that was previously in index 2 before the item in index 1 was removed
             // If you add two items and remove one, calling calling index 1 should throw an out of range exception
             // Removing two items should reduce the count by two
+        }
+
+        public void CopyItems()
+        {
+            T[] copy = new T[count];
+            copy = items;
+            items = new T[capacity];
+            for (int i = 0; i < count; i++)
+            {
+                items[i] = copy[i];
+            }
         }
     }
 }
