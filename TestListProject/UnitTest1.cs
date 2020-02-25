@@ -167,10 +167,27 @@ namespace TestListProject
         public void OverrideToString_ChangeIntToString()
         {
             CustomList<int> myList = new CustomList<int>();
-            int value = 10;
-            string expected = "10";
+            int value1 = 10;
+            int value2 = 20;
+            string expected = "10, 20";
             string actual;
-            actual = value.ToString();
+            myList.Add(value1);
+            myList.Add(value2);
+            actual = myList.ToString();
+            Assert.AreEqual(expected, actual);         
+        }
+
+        [TestMethod]
+        public void OverrideToString_ChangeDoubleToString()
+        {
+            CustomList<double> myList = new CustomList<double>();
+            double value1 = 2.75;
+            double value2 = 17.46;
+            string expected = "2.75, 17.46";
+            string actual;
+            myList.Add(value1);
+            myList.Add(value2);
+            actual = myList.ToString();
             Assert.AreEqual(expected, actual);
         }
 
@@ -178,11 +195,11 @@ namespace TestListProject
         public void OverrideToString_CheckIfStillInt()
         {
             CustomList<int> myList = new CustomList<int>();
-            int value = 10;
+            int value1 = 10;
+            int value2 = 20;
             bool isInt = default;
-            value.ToString();
 
-            if(value.ToString() == "10")
+            if (myList.ToString() == "10, 20")
             {
                 isInt = false;
             }
@@ -195,22 +212,11 @@ namespace TestListProject
         }
 
         [TestMethod]
-        public void OverrideToString_ChangeDoubleToString()
-        {
-            CustomList<double> myList = new CustomList<double>();
-            double value = 2.75;
-            string expected = "2.75";
-            string actual;
-            actual = value.ToString();
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void AddTwoLists_CheckNewListCount()
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            int expected = myList1.Count + myList2.Count;
+            int expected = 3;
             int actual;
             myList1.Add(1);
             myList1.Add(2);
@@ -236,6 +242,7 @@ namespace TestListProject
 
         }
 
+        [TestMethod]
         public void AddTwoLists_CheckLastIndex()
         {
             CustomList<int> myList1 = new CustomList<int>();
@@ -251,14 +258,42 @@ namespace TestListProject
 
         }
 
+        [TestMethod]
         public void AddTwoLists_CountTheSameAsFirstListIfSecondListEmpty()
         {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 2;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            CustomList<int> myList3 = myList1 + myList2;
+            actual = myList3.Count;
+            Assert.AreEqual(expected, actual);
 
         }
 
+        [TestMethod]
         public void AddTwoLists_ReportAllItemsFromBothLists()
         {
-
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected1 = 1;
+            int expected2 = 2;
+            int expected3 = 3;
+            int actual1;
+            int actual2;
+            int actual3;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(3);
+            CustomList<int> myList3 = myList1 + myList2;
+            actual1 = myList3[0];
+            actual2 = myList3[1];
+            actual3 = myList3[2];
+            Assert.AreEqual(expected1, actual1);
+            Assert.AreEqual(expected2, actual2);
+            Assert.AreEqual(expected3, actual3);
         }
 
         //[TestMethod]
