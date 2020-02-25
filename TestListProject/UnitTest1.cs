@@ -162,5 +162,44 @@ namespace TestListProject
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void AddTwoLists_CheckNewListCount()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = myList1.Count + myList2.Count;
+            int actual;
+            
+            CustomList<int> myList3 = myList1 + myList2;
+            actual = myList3.Count;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AddTwoLists_ItemsInCorrectOrder()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+
+            CustomList<int> myList3 = myList1 + myList2;
+            bool isTrue = default;
+
+            for (int i = 0; i < myList3.Count; i++)
+            {
+                if (i < i + 1)
+                {
+                    isTrue = true;
+                }
+                else
+                {
+                    isTrue = false;
+                    break;
+                }
+            }
+
+            Assert.IsTrue(isTrue);
+        }
     }
 }
