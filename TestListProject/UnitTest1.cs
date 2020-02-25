@@ -164,42 +164,84 @@ namespace TestListProject
         }
 
         [TestMethod]
-        public void AddTwoLists_CheckNewListCount()
+        public void OverrideToString_ChangeIntToString()
         {
-            CustomList<int> myList1 = new CustomList<int>();
-            CustomList<int> myList2 = new CustomList<int>();
-            int expected = myList1.Count + myList2.Count;
-            int actual;
-            
-            CustomList<int> myList3 = myList1 + myList2;
-            actual = myList3.Count;
-
+            CustomList<int> myList = new CustomList<int>();
+            int value = 10;
+            string expected = "10";
+            string actual;
+            actual = value.ToString();
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void AddTwoLists_ItemsInCorrectOrder()
+        public void OverrideToString_CheckIfStillInt()
         {
-            CustomList<int> myList1 = new CustomList<int>();
-            CustomList<int> myList2 = new CustomList<int>();
+            CustomList<int> myList = new CustomList<int>();
+            int value = 10;
+            bool isInt = default;
+            value.ToString();
 
-            CustomList<int> myList3 = myList1 + myList2;
-            bool isTrue = default;
-
-            for (int i = 0; i < myList3.Count; i++)
+            if(value.ToString() == "10")
             {
-                if (i < i + 1)
-                {
-                    isTrue = true;
-                }
-                else
-                {
-                    isTrue = false;
-                    break;
-                }
+                isInt = false;
             }
+            else
+            {
+                isInt = true;
+            }
+            Assert.IsFalse(isInt);
 
-            Assert.IsTrue(isTrue);
         }
+
+        [TestMethod]
+        public void OverrideToString_ChangeDoubleToString()
+        {
+            CustomList<double> myList = new CustomList<double>();
+            double value = 2.75;
+            string expected = "2.75";
+            string actual;
+            actual = value.ToString();
+            Assert.AreEqual(expected, actual);
+        }
+
+        //[TestMethod]
+        //public void AddTwoLists_CheckNewListCount()
+        //{
+        //    CustomList<int> myList1 = new CustomList<int>();
+        //    CustomList<int> myList2 = new CustomList<int>();
+        //    int expected = myList1.Count + myList2.Count;
+        //    int actual;
+
+        //    CustomList<int> myList3 = myList1 + myList2;
+        //    actual = myList3.Count;
+
+        //    Assert.AreEqual(expected, actual);
+        //}
+
+        //[TestMethod]
+        //public void AddTwoLists_ItemsInCorrectOrder()
+        //{
+        //    CustomList<int> myList1 = new CustomList<int>();
+        //    CustomList<int> myList2 = new CustomList<int>();
+
+        //    CustomList<int> myList3 = myList1 + myList2;
+        //    bool isTrue = default;
+
+        //    for (int i = 0; i < myList3.Count; i++)
+        //    {
+        //        if (i < i + 1)
+        //        {
+        //            isTrue = true;
+        //        }
+        //        else
+        //        {
+        //            isTrue = false;
+        //            break;
+        //        }
+        //    }
+
+        //    Assert.IsTrue(isTrue);
+        //}
     }
 }
