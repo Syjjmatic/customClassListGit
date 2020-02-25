@@ -37,19 +37,19 @@ namespace customClassList
             }
             set { items[i] = value; }
         }
-        //public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
-        //{
-        //    CustomList<T> l3 = new CustomList<T>();
-        //    l3.count = l1.count + l2.count;
+        public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
+        {
+            CustomList<T> l3 = new CustomList<T>();
+            l3.count = l1.count + l2.count;
 
-        //    for (int i = 0; i < l1.count; i++)
-        //    {
-        //        Add();
-        //    }
-            
+            //for (int i = 0; i < l1.count; i++)
+            //{
+            //    Add();
+            //}
 
-        //    return l3;
-        //}
+
+            return l3;
+        }
 
         public CustomList()
         {

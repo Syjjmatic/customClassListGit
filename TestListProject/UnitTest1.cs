@@ -205,19 +205,61 @@ namespace TestListProject
             Assert.AreEqual(expected, actual);
         }
 
-        //[TestMethod]
-        //public void AddTwoLists_CheckNewListCount()
-        //{
-        //    CustomList<int> myList1 = new CustomList<int>();
-        //    CustomList<int> myList2 = new CustomList<int>();
-        //    int expected = myList1.Count + myList2.Count;
-        //    int actual;
+        [TestMethod]
+        public void AddTwoLists_CheckNewListCount()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = myList1.Count + myList2.Count;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(3);
+            CustomList<int> myList3 = myList1 + myList2;
+            actual = myList3.Count;
+            Assert.AreEqual(expected, actual);
+        }
 
-        //    CustomList<int> myList3 = myList1 + myList2;
-        //    actual = myList3.Count;
+        [TestMethod]
+        public void AddTwoLists_CheckFirstIndex()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 1;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(3);
+            CustomList<int> myList3 = myList1 + myList2;
+            actual = myList3[0];
+            Assert.AreEqual(expected, actual);
 
-        //    Assert.AreEqual(expected, actual);
-        //}
+        }
+
+        public void AddTwoLists_CheckLastIndex()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 3;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(3);
+            CustomList<int> myList3 = myList1 + myList2;
+            actual = myList3[2];
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        public void AddTwoLists_CountTheSameAsFirstListIfSecondListEmpty()
+        {
+
+        }
+
+        public void AddTwoLists_ReportAllItemsFromBothLists()
+        {
+
+        }
 
         //[TestMethod]
         //public void AddTwoLists_ItemsInCorrectOrder()
