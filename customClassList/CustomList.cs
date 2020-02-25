@@ -27,7 +27,14 @@ namespace customClassList
         }
         public T this[int i]
         {
-            get { return items[i]; }
+            get 
+            {
+                if (i >= count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                return items[i];
+            }
             set { items[i] = value; }
         }
 
@@ -40,56 +47,32 @@ namespace customClassList
 
         public void Add(T item)
         {
-            if (count >= 4 && count < 8)
+            if(count == capacity)
             {
-                capacity = 4 * 2;
+                capacity *= 2;
                 CopyItems();
             }
-            else if (count >= 8 && count < 16)
-            {
-                capacity = 4 * (2 ^ 2);
-                CopyItems();
-            }
-            else if (count >= 16 && count < 32)
-            {
-                capacity = 4 * (2 ^ 3);
-                CopyItems();
-            }
-            else if (count >= 32 && count < 64)
-            {
-                capacity = 4 * (2 ^ 4);
-                CopyItems();
-            }
-
             items[count] = item;
             count++;
-            
-            // Each time an item is added, the list's count is increased by 1
-            // The first item in the list is in index 1
-            // The second item in the list is in index 2
-            // If there are more than 4 items, but less than 9, the array size is 8
-            // The item in the first index has the name of the first item added
         }
 
         public void Remove(T item)
         {
-            count--;
             // ToString
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++) // for every item
             {
-                if (item.Equals(items[i]))
+                if (item.Equals(items[i])) // check to see if item input and index are the same
                 {
-
+                    for (int j = i; j < count; j++) // if true, move all items down one and leave previous last index set to default
+                    {
+                        items[j] = items[j + 1];
+                    }
+                    items[count] = default;
                 }
-
             }
 
-            // Each time an item is removed, the list's count is reduced by 1
-            // There should be nothing in index 1 if one item was in the list and it was removed; throw range exception
-            // The item in index 1 should be the item that was previously in index 2 before the item in index 1 was removed
-            // If you add two items and remove one, calling calling index 1 should throw an out of range exception
-            // Removing two items should reduce the count by two
+            count--;
         }
 
         public void CopyItems()

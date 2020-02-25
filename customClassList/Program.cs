@@ -12,6 +12,9 @@ namespace customClassList
         {
             CustomList<int> newList = new CustomList<int>();
             newList.Add(10);
+            newList.Remove(10);
+            int atIndex = newList[0];
+            Console.WriteLine(atIndex);
         }
     }
 }
