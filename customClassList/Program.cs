@@ -10,13 +10,15 @@ namespace customClassList
     {
         static void Main(string[] args)
         {
-            CustomList<int> newList1 = new CustomList<int>();
-            newList1.Add(10);
-            newList1.Add(15);
-            newList1.Add(20);
-            newList1.Add(25);
-            newList1.Add(30);
-            Console.WriteLine(newList1.ToString());
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            myList1.Add(1);
+            myList1.Add(7);
+            myList2.Add(2);
+            myList2.Add(3);
+            myList2.Add(4);
+            CustomList<int> myList3 = myList1 + myList2;
+            Console.WriteLine(myList3.ToString());
             //CustomList<int> newList2 = new CustomList<int>();
             //newList2.Add(1);
             //newList2.Add(2);

@@ -110,18 +110,20 @@ namespace customClassList
             return str;
         }
 
-        //public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
-        //{
-        //    CustomList<T> l3 = new CustomList<T>();
-        //    l3.count = l1.count + l2.count;
+        public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
+        {
+            CustomList<T> l3 = new CustomList<T>();
 
-        //    for (int i = 0; i < l1.count; i++)
-        //    {
-        //        Add();
-        //    }
+            for (int i = 0; i < l1.count; i++)
+            {
+                l3.Add(l1.items[i]);
+            }
+            for (int i = 0; i < l2.count; i++)
+            {
+                l3.Add(l2.items[i]);
+            }
 
-
-        //    return l3;
-        //}
+            return l3;
+        }
     }
 }
