@@ -298,6 +298,85 @@ namespace TestListProject
             Assert.AreEqual(expected3, actual3);
         }
 
+        [TestMethod]
+        public void SubtractAListFromAnotherList_CheckNewListCount()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 1;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(1);
+            CustomList<int> myList3 = myList1 - myList2;
+            actual = myList3.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtractAListFromAnotherList_CheckFirstIndex()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 1;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(1);
+            CustomList<int> myList3 = myList1 - myList2;
+            actual = myList1[0];
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtactAListFromAnotherList_CheckLastIndex()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 2;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(1);
+            CustomList<int> myList3 = myList1 - myList2;
+            actual = myList1[1];
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtractAListFromAnotherList_CountTheSameAsFirstListIfSecondListEmpty()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 2;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(1);
+            CustomList<int> myList3 = myList1 - myList2;
+            actual = myList3.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtractAListFromAnotherList_ReportsAllItemsLeft()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected1 = 1;
+            int expected2 = 2;
+            int actual1;
+            int actual2;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(3);
+            CustomList<int> myList3 = myList1 - myList2;
+            actual1 = myList3[0];
+            actual2 = myList3[1];
+            Assert.AreEqual(expected1, actual1);
+            Assert.AreEqual(expected2, actual2);
+        }
+
         //[TestMethod]
         //public void AddTwoLists_ItemsInCorrectOrder()
         //{
