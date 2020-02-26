@@ -16,7 +16,7 @@ namespace customClassList
             newList1.Add(20);
             newList1.Add(25);
             newList1.Add(30);
-            Console.WriteLine(newList1.Count);
+            Console.WriteLine(newList1.ToString());
             //CustomList<int> newList2 = new CustomList<int>();
             //newList2.Add(1);
             //newList2.Add(2);

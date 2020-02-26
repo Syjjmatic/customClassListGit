@@ -37,34 +37,22 @@ namespace customClassList
             }
             set { items[i] = value; }
         }
-        public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
-        {
-            CustomList<T> l3 = new CustomList<T>();
-            l3.count = l1.count + l2.count;
-
-            //for (int i = 0; i < l1.count; i++)
-            //{
-            //    Add();
-            //}
-
-
-            return l3;
-        }
 
         public CustomList()
         {
+            count = 0;
             capacity = 4;
             items = new T[capacity];
-            count = 0;
         }
 
         public void Add(T item)
         {
             if(count == capacity)
             {
-                capacity *= 2;
+                IncreaseCapacity();
                 CopyItems();
             }
+
             items[count] = item;
             count++;
         }
@@ -99,9 +87,41 @@ namespace customClassList
             }
         }
 
+        void IncreaseCapacity()
+        {
+            capacity *= 2;
+        }
+
         public override string ToString()
         {
-            return base.ToString();
+            string str = "";
+            for (int i = 0; i < count; i++)
+            {
+                if (str == "")
+                {
+                    str = "" + items[i];
+                }
+                else
+                {
+                    str = str + ", " + items[i];
+                }
+            }
+
+            return str;
         }
+
+        //public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
+        //{
+        //    CustomList<T> l3 = new CustomList<T>();
+        //    l3.count = l1.count + l2.count;
+
+        //    for (int i = 0; i < l1.count; i++)
+        //    {
+        //        Add();
+        //    }
+
+
+        //    return l3;
+        //}
     }
 }
