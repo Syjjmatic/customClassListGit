@@ -125,5 +125,22 @@ namespace customClassList
 
             return l3;
         }
+
+        public static CustomList<T> operator -(CustomList<T> l1, CustomList<T> l2)
+        {
+            
+            for (int i = 0; i < l1.count; i++)
+            {
+                for (int j = 0; j < l2.count; j++)
+                {
+                    if (l1.items[i].Equals(l2.items[j]))
+                    {
+                        l1.Remove(l1.items[i]);
+                    }
+                }
+            }
+
+            return l1;
+        }
     }
 }

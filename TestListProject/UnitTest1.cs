@@ -318,10 +318,11 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            int expected = 1;
+            int expected = 2;
             int actual;
             myList1.Add(1);
             myList1.Add(2);
+            myList1.Add(3);
             myList2.Add(1);
             CustomList<int> myList3 = myList1 - myList2;
             actual = myList1[0];
@@ -333,10 +334,11 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            int expected = 2;
+            int expected = 3;
             int actual;
             myList1.Add(1);
             myList1.Add(2);
+            myList1.Add(3);
             myList2.Add(1);
             CustomList<int> myList3 = myList1 - myList2;
             actual = myList1[1];
@@ -348,7 +350,7 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            int expected = 2;
+            int expected = 1;
             int actual;
             myList1.Add(1);
             myList1.Add(2);

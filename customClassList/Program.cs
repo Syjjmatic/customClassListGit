@@ -13,11 +13,12 @@ namespace customClassList
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
             myList1.Add(1);
-            myList1.Add(7);
+            myList1.Add(3);
+            myList1.Add(5);
             myList2.Add(2);
-            myList2.Add(3);
-            myList2.Add(4);
-            CustomList<int> myList3 = myList1 + myList2;
+            myList2.Add(1);
+            myList2.Add(6);
+            CustomList<int> myList3 = myList1 - myList2;
             Console.WriteLine(myList3.ToString());
             //CustomList<int> newList2 = new CustomList<int>();
             //newList2.Add(1);
