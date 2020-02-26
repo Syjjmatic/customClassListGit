@@ -379,29 +379,102 @@ namespace TestListProject
             Assert.AreEqual(expected2, actual2);
         }
 
-        //[TestMethod]
-        //public void AddTwoLists_ItemsInCorrectOrder()
-        //{
-        //    CustomList<int> myList1 = new CustomList<int>();
-        //    CustomList<int> myList2 = new CustomList<int>();
+        [TestMethod]
+        public void ZipTwoLists_ItemsInCorrectOrder()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
 
-        //    CustomList<int> myList3 = myList1 + myList2;
-        //    bool isTrue = default;
+            CustomList<int> myList3 = new CustomList<int>();
+            myList3.Zip(myList1, myList2);
+            bool isTrue = default;
 
-        //    for (int i = 0; i < myList3.Count; i++)
-        //    {
-        //        if (i < i + 1)
-        //        {
-        //            isTrue = true;
-        //        }
-        //        else
-        //        {
-        //            isTrue = false;
-        //            break;
-        //        }
-        //    }
+            for (int i = 0; i < myList3.Count; i++)
+            {
+                if (i < i + 1)
+                {
+                    isTrue = true;
+                }
+                else
+                {
+                    isTrue = false;
+                    break;
+                }
+            }
 
-        //    Assert.IsTrue(isTrue);
-        //}
+            Assert.IsTrue(isTrue);
+        }
+        
+        [TestMethod]
+        public void ZipTwoLists_CheckCount()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 5;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(5);
+            myList2.Add(2);
+            myList1.Add(4);
+            CustomList<int> myList3 = new CustomList<int>();
+            myList3.Zip(myList1, myList2);
+            actual = myList3.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ZipTwoLists_CheckCapacity()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 8;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(5);
+            myList2.Add(2);
+            myList1.Add(4);
+            CustomList<int> myList3 = new CustomList<int>();
+            myList3.Zip(myList1, myList2);
+            actual = myList3.Capacity;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ZipTwoLists_CheckFirstIndex()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 1;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(5);
+            myList2.Add(2);
+            myList1.Add(4);
+            CustomList<int> myList3 = new CustomList<int>();
+            myList3.Zip(myList1, myList2);
+            actual = myList3[0];
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ZipTwoLists_CheckLastIndex()
+        {
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            int expected = 5;
+            int actual;
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(5);
+            myList2.Add(2);
+            myList1.Add(4);
+            CustomList<int> myList3 = new CustomList<int>();
+            myList3.Zip(myList1, myList2);
+            actual = myList3[4];
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
