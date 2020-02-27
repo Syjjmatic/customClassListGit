@@ -13,7 +13,7 @@ namespace customClassList
         T[] items;
         int count;
         int capacity;
-        public int Count 
+        public int Count
         {
             get
             {
@@ -29,7 +29,7 @@ namespace customClassList
         }
         public T this[int i]
         {
-            get 
+            get
             {
                 if (i >= count)
                 {
@@ -57,7 +57,7 @@ namespace customClassList
 
         public void Add(T item)
         {
-            if(count == capacity)
+            if (count == capacity)
             {
                 IncreaseCapacity();
                 CopyItems();
@@ -69,11 +69,11 @@ namespace customClassList
 
         public void Remove(T item)
         {
-            for (int i = 0; i < count; i++) // for every item
+            for (int i = 0; i < count; i++)
             {
-                if (item.Equals(items[i])) // check to see if item input and index are the same
+                if (item.Equals(items[i]))
                 {
-                    for (int j = i; j < count; j++) // if true, move all items down one and leave previous last index set to default
+                    for (int j = i; j < count; j++)
                     {
                         items[j] = items[j + 1];
                     }
@@ -104,6 +104,7 @@ namespace customClassList
         public override string ToString()
         {
             string str = "";
+
             for (int i = 0; i < count; i++)
             {
                 if (str == "")
@@ -131,15 +132,6 @@ namespace customClassList
                 l3.Add(item);
             }
 
-            //for (int i = 0; i < list1.count; i++)
-            //{
-            //    l3.Add(list1.items[i]);
-            //}
-            //for (int i = 0; i < list2.count; i++)
-            //{
-            //    l3.Add(list2.items[i]);
-            //}
-
             return l3;
         }
 
@@ -154,73 +146,44 @@ namespace customClassList
                     {
                         list1.Remove(list1Item);
                     }
-
                 }
             }
-            
-            //for (int i = 0; i < list1.count; i++)
-            //{
-            //    for (int j = 0; j < list2.count; j++)
-            //    {
-            //        if (list1.items[i].Equals(list2.items[j]))
-            //        {
-            //            list1.Remove(list1.items[i]);
-            //        }
-            //    }
-            //}
 
             return list1;
-        }        
+        }
 
         public CustomList<T> Zip(CustomList<T> list)
         {
             CustomList<T> returnList = new CustomList<T>();
 
             if (count >= list.count)
-            {
+            {                
                 for (int i = 0; i < count; i++)
                 {
-                    try
-                    {
-                        if (i < count)
-                        {
-                            returnList.Add(items[i]);
-                        }                        
-                        if (i < list.count)
-                        {
-                            returnList.Add(list[i]);
-                        }
-                    }
-                    catch
-                    {
-                        throw new ArgumentOutOfRangeException();
-                    }
+                    ZipTwoItems(i, list.count, returnList, list);
                 }
             }
             else if (list.count > count)
             {
                 for (int i = 0; i < list.count; i++)
                 {
-                    try
-                    {
-                        if (i < count)
-                        {
-                            returnList.Add(items[i]);
-                        }
-                        if (i < list.count)
-                        {
-                            returnList.Add(list[i]);
-                        }
-                        
-                    }
-                    catch
-                    {
-                        throw new ArgumentOutOfRangeException();
-                    }
+                    ZipTwoItems(i, list.count, returnList, list);
                 }
             }
 
             return returnList;
+        }
+
+        public void ZipTwoItems(int i, int listCount, CustomList<T> returnList, CustomList<T> list)
+        {
+            if (i < count)
+            {
+                returnList.Add(items[i]);
+            }
+            if (i < listCount)
+            {
+                returnList.Add(list[i]);
+            }
         }
     }
 }
