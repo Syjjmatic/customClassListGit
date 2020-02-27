@@ -18,8 +18,11 @@ namespace customClassList
             myList2.Add(2);
             myList2.Add(1);
             myList2.Add(6);
-            CustomList<int> myList3 = myList1 - myList2;
+            myList2.Add(8);
+            CustomList<int> myList3 = new CustomList<int>();
+            myList3 = myList3.Zip(myList1, myList2);
             Console.WriteLine(myList3.ToString());
+            Console.WriteLine(myList3[2]);
             //CustomList<int> newList2 = new CustomList<int>();
             //newList2.Add(1);
             //newList2.Add(2);

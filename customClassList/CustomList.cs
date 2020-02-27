@@ -142,5 +142,50 @@ namespace customClassList
 
             return l1;
         }
+
+        public CustomList<T> Zip(CustomList<T> l1, CustomList<T> l2)
+        {
+            CustomList<T> l3 = new CustomList<T>();
+
+
+            if (l1.count >= l2.count)
+            {
+                for (int i = 0; i < l1.count; i++)
+                {
+                    try
+                    {
+                        l3.Add(l1[i]);
+                        if (i < l2.count)
+                        {
+                            l3.Add(l2[i]);
+                        }
+                    }
+                    catch
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                }
+            }
+            else if (l2.count > l1.count)
+            {
+                for (int i = 0; i < l2.count; i++)
+                {
+                    try
+                    {
+                        if(i < l1.count)
+                        {
+                            l3.Add(l1[i]);
+                        }                        
+                        l3.Add(l2[i]);
+                    }
+                    catch
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                }
+            }
+
+            return l3;
+        }
     }
 }

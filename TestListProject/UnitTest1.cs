@@ -384,22 +384,43 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-
             CustomList<int> myList3 = new CustomList<int>();
-            myList3.Zip(myList1, myList2);
             bool isTrue = default;
-
-            for (int i = 0; i < myList3.Count; i++)
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(5);
+            myList2.Add(2);
+            myList2.Add(4);
+            myList2.Add(6);
+            myList3 = myList3.Zip(myList1, myList2);
+            
+            if (myList3[0] == myList1[0])
             {
-                if (i < i + 1)
-                {
-                    isTrue = true;
-                }
-                else
-                {
-                    isTrue = false;
-                    break;
-                }
+                isTrue = true;
+            }
+            else if (myList3[1] == myList2[0])
+            {
+                isTrue = true;
+            }
+            else if (myList3[2] == myList1[1])
+            {
+                isTrue = true;
+            }
+            else if (myList3[3] == myList2[1])
+            {
+                isTrue = true;
+            }
+            else if (myList3[4] == myList1[2])
+            {
+                isTrue = true;
+            }
+            else if (myList3[5] == myList2[2])
+            {
+                isTrue = true;
+            }
+            else
+            {
+                isTrue = false;
             }
 
             Assert.IsTrue(isTrue);
@@ -410,15 +431,16 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            int expected = 5;
+            CustomList<int> myList3 = new CustomList<int>();
+            int expected = 6;
             int actual;
             myList1.Add(1);
             myList1.Add(3);
             myList1.Add(5);
             myList2.Add(2);
-            myList1.Add(4);
-            CustomList<int> myList3 = new CustomList<int>();
-            myList3.Zip(myList1, myList2);
+            myList2.Add(4);
+            myList2.Add(6);
+            myList3 = myList3.Zip(myList1, myList2);
             actual = myList3.Count;
             Assert.AreEqual(expected, actual);
         }
@@ -434,9 +456,10 @@ namespace TestListProject
             myList1.Add(3);
             myList1.Add(5);
             myList2.Add(2);
-            myList1.Add(4);
+            myList2.Add(4);
+            myList2.Add(6);
             CustomList<int> myList3 = new CustomList<int>();
-            myList3.Zip(myList1, myList2);
+            myList3 = myList3.Zip(myList1, myList2);
             actual = myList3.Capacity;
             Assert.AreEqual(expected, actual);
         }
@@ -452,9 +475,10 @@ namespace TestListProject
             myList1.Add(3);
             myList1.Add(5);
             myList2.Add(2);
-            myList1.Add(4);
+            myList2.Add(4);
+            myList2.Add(6);
             CustomList<int> myList3 = new CustomList<int>();
-            myList3.Zip(myList1, myList2);
+            myList3 = myList3.Zip(myList1, myList2);
             actual = myList3[0];
             Assert.AreEqual(expected, actual);
         }
@@ -464,16 +488,17 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            int expected = 5;
+            int expected = 6;
             int actual;
             myList1.Add(1);
             myList1.Add(3);
             myList1.Add(5);
             myList2.Add(2);
-            myList1.Add(4);
+            myList2.Add(4);
+            myList2.Add(6);
             CustomList<int> myList3 = new CustomList<int>();
-            myList3.Zip(myList1, myList2);
-            actual = myList3[4];
+            myList3 = myList3.Zip(myList1, myList2);
+            actual = myList3[5];
             Assert.AreEqual(expected, actual);
         }
     }
