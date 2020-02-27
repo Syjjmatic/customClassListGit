@@ -384,7 +384,6 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            CustomList<int> myList3 = new CustomList<int>();
             bool isTrue = default;
             myList1.Add(1);
             myList1.Add(3);
@@ -392,7 +391,7 @@ namespace TestListProject
             myList2.Add(2);
             myList2.Add(4);
             myList2.Add(6);
-            myList3 = myList3.Zip(myList1, myList2);
+            CustomList<int> myList3 = myList1.Zip(myList2);
             
             if (myList3[0] == myList1[0])
             {
@@ -431,7 +430,6 @@ namespace TestListProject
         {
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
-            CustomList<int> myList3 = new CustomList<int>();
             int expected = 6;
             int actual;
             myList1.Add(1);
@@ -440,7 +438,7 @@ namespace TestListProject
             myList2.Add(2);
             myList2.Add(4);
             myList2.Add(6);
-            myList3 = myList3.Zip(myList1, myList2);
+            CustomList<int> myList3 = myList1.Zip(myList2);
             actual = myList3.Count;
             Assert.AreEqual(expected, actual);
         }
@@ -458,8 +456,7 @@ namespace TestListProject
             myList2.Add(2);
             myList2.Add(4);
             myList2.Add(6);
-            CustomList<int> myList3 = new CustomList<int>();
-            myList3 = myList3.Zip(myList1, myList2);
+            CustomList<int> myList3 = myList1.Zip(myList2);
             actual = myList3.Capacity;
             Assert.AreEqual(expected, actual);
         }
@@ -477,8 +474,7 @@ namespace TestListProject
             myList2.Add(2);
             myList2.Add(4);
             myList2.Add(6);
-            CustomList<int> myList3 = new CustomList<int>();
-            myList3 = myList3.Zip(myList1, myList2);
+            CustomList<int> myList3 = myList1.Zip(myList2);
             actual = myList3[0];
             Assert.AreEqual(expected, actual);
         }
@@ -496,8 +492,7 @@ namespace TestListProject
             myList2.Add(2);
             myList2.Add(4);
             myList2.Add(6);
-            CustomList<int> myList3 = new CustomList<int>();
-            myList3 = myList3.Zip(myList1, myList2);
+            CustomList<int> myList3 = myList1.Zip(myList2);
             actual = myList3[5];
             Assert.AreEqual(expected, actual);
         }

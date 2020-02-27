@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace customClassList
 {
     public class CustomList<T> : IEnumerable
@@ -151,21 +152,66 @@ namespace customClassList
             return list1;
         }
 
-        public CustomList<T> Zip(CustomList<T> list1, CustomList<T> list2)
+        //public CustomList<T> Zip(CustomList<T> list1, CustomList<T> list2)
+        //{
+        //    CustomList<T> list3 = new CustomList<T>();
+
+
+        //    if (list1.count >= list2.count)
+        //    {
+        //        for (int i = 0; i < list1.count; i++)
+        //        {
+        //            try
+        //            {
+        //                list3.Add(list1[i]);
+        //                if (i < list2.count)
+        //                {
+        //                    list3.Add(list2[i]);
+        //                }
+        //            }
+        //            catch
+        //            {
+        //                throw new ArgumentOutOfRangeException();
+        //            }
+        //        }
+        //    }
+        //    else if (list2.count > list1.count)
+        //    {
+        //        for (int i = 0; i < list2.count; i++)
+        //        {
+        //            try
+        //            {
+        //                if(i < list1.count)
+        //                {
+        //                    list3.Add(list1[i]);
+        //                }                        
+        //                list3.Add(list2[i]);
+        //            }
+        //            catch
+        //            {
+        //                throw new ArgumentOutOfRangeException();
+        //            }
+        //        }
+        //    }
+
+        //    return list3;
+        //}
+
+        public CustomList<T> Zip(CustomList<T> list)
         {
-            CustomList<T> list3 = new CustomList<T>();
+            CustomList<T> returnList = new CustomList<T>();
 
 
-            if (list1.count >= list2.count)
+            if (count >= list.count)
             {
-                for (int i = 0; i < list1.count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     try
                     {
-                        list3.Add(list1[i]);
-                        if (i < list2.count)
+                        returnList.Add(items[i]);
+                        if (i < list.count)
                         {
-                            list3.Add(list2[i]);
+                            returnList.Add(list[i]);
                         }
                     }
                     catch
@@ -174,17 +220,17 @@ namespace customClassList
                     }
                 }
             }
-            else if (list2.count > list1.count)
+            else if (list.count > count)
             {
-                for (int i = 0; i < list2.count; i++)
+                for (int i = 0; i < list.count; i++)
                 {
                     try
                     {
-                        if(i < list1.count)
+                        if (i < count)
                         {
-                            list3.Add(list1[i]);
-                        }                        
-                        list3.Add(list2[i]);
+                            returnList.Add(items[i]);
+                        }
+                        returnList.Add(list[i]);
                     }
                     catch
                     {
@@ -193,8 +239,11 @@ namespace customClassList
                 }
             }
 
-            return list3;
+            return returnList;
         }
 
+
+
     }
+
 }
