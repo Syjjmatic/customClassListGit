@@ -122,85 +122,59 @@ namespace customClassList
         public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> l3 = new CustomList<T>();
+            foreach (T item in list1)
+            {
+                l3.Add(item);
+            }
+            foreach (T item in list2)
+            {
+                l3.Add(item);
+            }
 
-            for (int i = 0; i < list1.count; i++)
-            {
-                l3.Add(list1.items[i]);
-            }
-            for (int i = 0; i < list2.count; i++)
-            {
-                l3.Add(list2.items[i]);
-            }
+            //for (int i = 0; i < list1.count; i++)
+            //{
+            //    l3.Add(list1.items[i]);
+            //}
+            //for (int i = 0; i < list2.count; i++)
+            //{
+            //    l3.Add(list2.items[i]);
+            //}
 
             return l3;
         }
 
         public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
         {
-            
-            for (int i = 0; i < list1.count; i++)
+
+            foreach (T list1Item in list1)
             {
-                for (int j = 0; j < list2.count; j++)
+                foreach (T list2Item in list2)
                 {
-                    if (list1.items[i].Equals(list2.items[j]))
+                    if (list1Item.Equals(list2Item))
                     {
-                        list1.Remove(list1.items[i]);
+                        list1.Remove(list1Item);
                     }
+
                 }
             }
+            
+            //for (int i = 0; i < list1.count; i++)
+            //{
+            //    for (int j = 0; j < list2.count; j++)
+            //    {
+            //        if (list1.items[i].Equals(list2.items[j]))
+            //        {
+            //            list1.Remove(list1.items[i]);
+            //        }
+            //    }
+            //}
 
             return list1;
-        }
-
-        //public CustomList<T> Zip(CustomList<T> list1, CustomList<T> list2)
-        //{
-        //    CustomList<T> list3 = new CustomList<T>();
-
-
-        //    if (list1.count >= list2.count)
-        //    {
-        //        for (int i = 0; i < list1.count; i++)
-        //        {
-        //            try
-        //            {
-        //                list3.Add(list1[i]);
-        //                if (i < list2.count)
-        //                {
-        //                    list3.Add(list2[i]);
-        //                }
-        //            }
-        //            catch
-        //            {
-        //                throw new ArgumentOutOfRangeException();
-        //            }
-        //        }
-        //    }
-        //    else if (list2.count > list1.count)
-        //    {
-        //        for (int i = 0; i < list2.count; i++)
-        //        {
-        //            try
-        //            {
-        //                if(i < list1.count)
-        //                {
-        //                    list3.Add(list1[i]);
-        //                }                        
-        //                list3.Add(list2[i]);
-        //            }
-        //            catch
-        //            {
-        //                throw new ArgumentOutOfRangeException();
-        //            }
-        //        }
-        //    }
-
-        //    return list3;
-        //}
+        }        
 
         public CustomList<T> Zip(CustomList<T> list)
         {
             CustomList<T> returnList = new CustomList<T>();
-
 
             if (count >= list.count)
             {
@@ -208,7 +182,10 @@ namespace customClassList
                 {
                     try
                     {
-                        returnList.Add(items[i]);
+                        if (i < count)
+                        {
+                            returnList.Add(items[i]);
+                        }                        
                         if (i < list.count)
                         {
                             returnList.Add(list[i]);
@@ -230,7 +207,11 @@ namespace customClassList
                         {
                             returnList.Add(items[i]);
                         }
-                        returnList.Add(list[i]);
+                        if (i < list.count)
+                        {
+                            returnList.Add(list[i]);
+                        }
+                        
                     }
                     catch
                     {
@@ -241,9 +222,5 @@ namespace customClassList
 
             return returnList;
         }
-
-
-
     }
-
 }
