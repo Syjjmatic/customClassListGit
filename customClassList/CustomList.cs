@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace customClassList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         T[] items;
         int count;
@@ -45,6 +46,14 @@ namespace customClassList
             items = new T[capacity];
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
+        }
+
         public void Add(T item)
         {
             if(count == capacity)
@@ -59,8 +68,6 @@ namespace customClassList
 
         public void Remove(T item)
         {
-            // ToString
-
             for (int i = 0; i < count; i++) // for every item
             {
                 if (item.Equals(items[i])) // check to see if item input and index are the same
@@ -69,6 +76,7 @@ namespace customClassList
                     {
                         items[j] = items[j + 1];
                     }
+
                     items[count] = default;
                 }
             }
@@ -110,54 +118,54 @@ namespace customClassList
             return str;
         }
 
-        public static CustomList<T> operator +(CustomList<T> l1, CustomList<T> l2)
+        public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> l3 = new CustomList<T>();
 
-            for (int i = 0; i < l1.count; i++)
+            for (int i = 0; i < list1.count; i++)
             {
-                l3.Add(l1.items[i]);
+                l3.Add(list1.items[i]);
             }
-            for (int i = 0; i < l2.count; i++)
+            for (int i = 0; i < list2.count; i++)
             {
-                l3.Add(l2.items[i]);
+                l3.Add(list2.items[i]);
             }
 
             return l3;
         }
 
-        public static CustomList<T> operator -(CustomList<T> l1, CustomList<T> l2)
+        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
         {
             
-            for (int i = 0; i < l1.count; i++)
+            for (int i = 0; i < list1.count; i++)
             {
-                for (int j = 0; j < l2.count; j++)
+                for (int j = 0; j < list2.count; j++)
                 {
-                    if (l1.items[i].Equals(l2.items[j]))
+                    if (list1.items[i].Equals(list2.items[j]))
                     {
-                        l1.Remove(l1.items[i]);
+                        list1.Remove(list1.items[i]);
                     }
                 }
             }
 
-            return l1;
+            return list1;
         }
 
-        public CustomList<T> Zip(CustomList<T> l1, CustomList<T> l2)
+        public CustomList<T> Zip(CustomList<T> list1, CustomList<T> list2)
         {
-            CustomList<T> l3 = new CustomList<T>();
+            CustomList<T> list3 = new CustomList<T>();
 
 
-            if (l1.count >= l2.count)
+            if (list1.count >= list2.count)
             {
-                for (int i = 0; i < l1.count; i++)
+                for (int i = 0; i < list1.count; i++)
                 {
                     try
                     {
-                        l3.Add(l1[i]);
-                        if (i < l2.count)
+                        list3.Add(list1[i]);
+                        if (i < list2.count)
                         {
-                            l3.Add(l2[i]);
+                            list3.Add(list2[i]);
                         }
                     }
                     catch
@@ -166,17 +174,17 @@ namespace customClassList
                     }
                 }
             }
-            else if (l2.count > l1.count)
+            else if (list2.count > list1.count)
             {
-                for (int i = 0; i < l2.count; i++)
+                for (int i = 0; i < list2.count; i++)
                 {
                     try
                     {
-                        if(i < l1.count)
+                        if(i < list1.count)
                         {
-                            l3.Add(l1[i]);
+                            list3.Add(list1[i]);
                         }                        
-                        l3.Add(l2[i]);
+                        list3.Add(list2[i]);
                     }
                     catch
                     {
@@ -185,7 +193,8 @@ namespace customClassList
                 }
             }
 
-            return l3;
+            return list3;
         }
+
     }
 }
